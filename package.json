@@ -3,15 +3,22 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "dev": "DEBUG=Sprout:server DB=local supervisor ./bin/www"
   },
   "dependencies": {
     "body-parser": "~1.13.2",
+    "connect-redis": "^3.0.2",
     "cookie-parser": "~1.3.5",
     "debug": "~2.2.0",
     "express": "~4.13.1",
+    "express-session": "^1.13.0",
     "jade": "~1.11.0",
+    "lodash": "^4.12.0",
+    "moment": "^2.13.0",
     "morgan": "~1.6.1",
-    "serve-favicon": "~2.3.0"
+    "redis": "^2.6.0-2",
+    "serve-favicon": "~2.3.0",
+    "validator": "^5.2.0"
   }
 }
