@@ -13,8 +13,8 @@ const Note = model.Note;
  * @return {Promise}           [description]
  */
 exports.add_note = (note, callback) => {
-  let new_note = new Note(note);
-  return callback ? new_note.save(callback) : new_note.save();
+    let new_note = new Note(note);
+    return callback ? new_note.save(callback) : new_note.save();
 }
 
 /**
@@ -24,7 +24,7 @@ exports.add_note = (note, callback) => {
  * @return {Promise}           [description]
  */
 exports.get_note = (query, fields, options, callback) => {
-  return callback ? Note.find(query, fields, options, callback) : Note.find(query, fields, options).exec();
+    return callback ? Note.find(query, fields, options, callback) : Note.find(query, fields, options).exec();
 }
 
 /**
@@ -34,5 +34,5 @@ exports.get_note = (query, fields, options, callback) => {
  * @return {Promise}           [description]
  */
 exports.update_note = (query, options, callback) => {
-  return callback ? Note.update(query, options, callback) : Note.update(query, options).exec();
+    return callback ? Note.update(query, options, callback) : Note.update(query, options).exec();
 }

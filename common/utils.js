@@ -11,5 +11,5 @@ const crypto = require('crypto');
  * @return {String}      加密后的文本
  */
 exports.md5 = (text) => {
-  return crypto.createHash('md5').update(text).digest('hex');
+    return crypto.createHash('md5').update(text).digest('hex');
 };

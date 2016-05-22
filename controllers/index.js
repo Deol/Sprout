@@ -6,8 +6,8 @@ const explore = require('./explore');
 const cultivation = require('./cultivation');
 
 module.exports = {
-	user: user,
-	note: note,
-	explore: explore,
-	cultivation: cultivation
+    user: user,
+    note: note,
+    explore: explore,
+    cultivation: cultivation
 }

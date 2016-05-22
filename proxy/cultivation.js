@@ -13,8 +13,8 @@ const Cultivation = model.Cultivation;
  * @return {Promise}           [description]
  */
 exports.add_cultivation = (cultivation, callback) => {
-  let new_cultivation = new Cultivation(cultivation);
-  return callback ? new_cultivation.save(callback) : new_cultivation.save();
+    let new_cultivation = new Cultivation(cultivation);
+    return callback ? new_cultivation.save(callback) : new_cultivation.save();
 }
 
 /**
@@ -24,7 +24,7 @@ exports.add_cultivation = (cultivation, callback) => {
  * @return {Promise}           [description]
  */
 exports.get_cultivation = (query, fields, options, callback) => {
-  return callback ? Cultivation.find(query, fields, options, callback) : Cultivation.find(query, fields, options).exec();
+    return callback ? Cultivation.find(query, fields, options, callback) : Cultivation.find(query, fields, options).exec();
 }
 
 /**
@@ -34,5 +34,5 @@ exports.get_cultivation = (query, fields, options, callback) => {
  * @return {Promise}           [description]
  */
 exports.update_cultivation = (query, options, callback) => {
-  return callback ? Cultivation.update(query, options, callback) : Cultivation.update(query, options).exec();
+    return callback ? Cultivation.update(query, options, callback) : Cultivation.update(query, options).exec();
 }
