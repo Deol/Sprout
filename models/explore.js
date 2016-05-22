@@ -16,4 +16,4 @@ const explore_schema = new Schema({
 });
 
 explore_schema.index({initial_time: -1});
-mongoose.model('explore', explore_schema);
+mongoose.model('Explore', explore_schema);

@@ -1,9 +1,9 @@
 'use strict';
 
-const user = require('./user');
-const note = require('./note.js');
-const explore = require('./explore.js');
-const cultivation = require('./cultivation.js');
+const User = require('./user');
+const Note = require('./note');
+const Explore = require('./explore');
+const Cultivation = require('./cultivation');
 
 module.exports = {
     User: User,

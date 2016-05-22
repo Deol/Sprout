@@ -6,6 +6,8 @@ const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const session = require('express-session');
+const RedisStore = require('connect-redis')(session);
 
 // config
 const config = require('./config');
@@ -13,6 +15,8 @@ const config = require('./config');
 // routes config
 const user = require('./routes/user');
 const note = require('./routes/note');
+const explore = require('./routes/explore');
+const cultivation = require('./routes/cultivation');
 
 let app = express();
 app.disabled('x-powered-by');
@@ -51,10 +55,10 @@ app.use(session({
 });
 */
 // route
-app.all('/sprout/v1/user/*', user);
-app.all('/sprout/v1/note/*', note);
-app.all('/sprout/v1/explore/*', explore);
-app.all('/sprout/v1/cultivation/*', cultivation);
+app.all('/sprout/v1/user*', user);
+app.all('/sprout/v1/note*', note);
+app.all('/sprout/v1/explore*', explore);
+app.all('/sprout/v1/cultivation*', cultivation);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

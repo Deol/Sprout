@@ -13,4 +13,4 @@ const cultivation_schema = new Schema({
 });
 
 cultivation_schema.index({initial_time: -1});
-mongoose.model('cultivation', cultivation_schema);
+mongoose.model('Cultivation', cultivation_schema);

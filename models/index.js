@@ -21,5 +21,5 @@ module.exports = {
   User: mongoose.model('User'),
   Note: mongoose.model('Note'),
   Explore: mongoose.model('Explore'),
-  Cultivation: mongoose.model('cultivation'),
+  Cultivation: mongoose.model('Cultivation'),
 }

@@ -3,3 +3,4 @@ Thumbs.db
 *.log
 config.js
 node_modules/
+dump.rdb

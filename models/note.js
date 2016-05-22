@@ -14,4 +14,4 @@ const note_schema = new Schema({
 });
 
 note_schema.index({edit_time: -1});
-mongoose.model('note', note_schema);
+mongoose.model('Note', note_schema);
