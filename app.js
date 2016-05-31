@@ -2,7 +2,7 @@
 
 const express = require('express');
 const path = require('path');
-const favicon = require('serve-favicon');
+//const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
@@ -15,6 +15,7 @@ const config = require('./config');
 // routes config
 const user = require('./routes/user');
 const note = require('./routes/note');
+const skill = require('./routes/skill');
 const explore = require('./routes/explore');
 const cultivation = require('./routes/cultivation');
 
@@ -45,17 +46,18 @@ app.use(session({
 }));
 
 // Cross-Domain Access
-/*app.all('*', (req, res, next) => {
-  res.header('Access-Control-Allow-Origin', *); // TODO
+app.all('*', (req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'http://0.0.0.0:8080');
   res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Content-Type');
   res.header('Access-Control-Allow-Credentials', 'true');
   next();
 });
-*/
+
 // route
 app.all('/sprout/v1/user*', user);
 app.all('/sprout/v1/note*', note);
+app.all('/sprout/v1/skill*', skill);
 app.all('/sprout/v1/explore*', explore);
 app.all('/sprout/v1/cultivation*', cultivation);
 

@@ -14,7 +14,7 @@ const response_code = require('../common/response_code').response_code;
  * @param  {[type]}	  req  [description]
  * @param  {[type]}	  res  [description]
  * @param  {Function} next [description]
- * @return {[type]}		     [description]
+ * @return {[type]}		   [description]
  */
 exports.get_cultivation = (req, res, next) => {
 
@@ -48,7 +48,7 @@ exports.add_cultivation = (req, res, next) => {
 	let cultivation_info = {
 		title: req.body.title,
 		content: req.body.content,
-		initial_time: req.body.initial_time
+		initial_time: new Date()
 	}
 
 	let not_complete = _.keys(cultivation_info).some((item) => {
@@ -82,8 +82,7 @@ exports.update_cultivation = (req, res, next) => {
 
 	let options = {
 		title: req.body.title,
-		content: req.body.content,
-		initial_time: req.body.initial_time
+		content: req.body.content
 	}
 
 	let not_complete = _.keys(options).some((item) => {

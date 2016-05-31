@@ -1,29 +1,24 @@
 /**
- * 发现探索模块
+ * 技能树模块
  */
 'use strict';
 
 const proxy = require('../proxy/');
-const Explore = proxy.Explore;
+const Skill = proxy.Skill;
 const _ = require('lodash');
 const validator = require('validator');
 const response_code = require('../common/response_code').response_code;
 
 /**
- * 获取发现探索信息
- * @param  {[type]}      req  [description]
- * @param  {[type]}      res  [description]
+ * 获取技能树信息
+ * @param  {[type]}   req  [description]
+ * @param  {[type]}   res  [description]
  * @param  {Function} next [description]
- * @return {[type]}           [description]
+ * @return {[type]}        [description]
  */
-exports.get_explore = (req, res, next) => {
+exports.get_skill = (req, res, next) => {
 
-	let query = {};
-
-    if (req.query.belong_tag) {
-        query = { belong_tag: new RegExp(req.query.belong_tag) }
-    }
-
+    let query = req.query.belong_tag ? {belong_tag: new RegExp(req.query.belong_tag)} : {};
     let feilds = {__v: 0};
     let options = {
         sort: {
@@ -31,8 +26,11 @@ exports.get_explore = (req, res, next) => {
         }
     };
 
-    return Explore.get_explore(query, feilds, options)
+    return Skill.get_skill(query, feilds, options)
         .then((data) => {
+            for(let i of data) {
+                i._doc.initial_time = i.initial_time;
+            }
             res.send({code: 1, msg: response_code['1'], data: data});
         })
         .catch((e) => {
@@ -41,59 +39,59 @@ exports.get_explore = (req, res, next) => {
 }
 
 /**
- * 增加发现探索
- * @param  {[type]}      req   [description]
- * @param  {[type]}      res   [description]
+ * 增加技能树
+ * @param  {[type]}   req   [description]
+ * @param  {[type]}   res   [description]
  * @param  {Function} next  [description]
- * @return {[type]}              [description]
+ * @return {[type]}         [description]
  */
-exports.add_explore = (req, res, next) => {
+exports.add_skill = (req, res, next) => {
 
-    let explore_info = {
-        picture: req.body.picture,
+    let skill_info = {
         title: req.body.title,
         intro: req.body.intro,
-        initial_time: new Date(),
-        hyperlink: req.body.hyperlink,
-        belong_tag: req.body.belong_tag
+        book: req.body.book,
+        expand: req.body.expand,
+        belong_tag: req.body.belong_tag,
+        initial_time: new Date()
     }
 
-    console.log(explore_info);
+    console.log(skill_info);
 
-    let not_complete = _.keys(explore_info).some((item) => {
-        return !explore_info[item];
+    let not_complete = _.keys(skill_info).some((item) => {
+        return !skill_info[item];
     });
 
     // 参数不完整
-      if (not_complete) {
+    if (not_complete) {
         return res.send({code: 113, msg: response_code['113']});
     }
 
-    return Explore.add_explore(explore_info)
+    return Skill.add_skill(skill_info)
         .then((data) => {
             res.send({code: 1, msg: response_code['1'], data: data});
         })
         .catch((e) => {
-            res.send({code: 13, msg: response_code['13'], err: e});
+            res.send({code: 116, msg: response_code['116']});
         })
 }
 
 /**
- * 修改发现探索资料
- * @param  {[type]}      req  [description]
+ * 修改技能树资料
+ * @param  {[type]}     req  [description]
  * @param  {[type]}     res  [description]
- * @param  {Function} next [description]
- * @return {[type]}             [description]
+ * @param  {Function} next   [description]
+ * @return {[type]}          [description]
  */
-exports.update_explore = (req, res, next) => {
+exports.update_skill = (req, res, next) => {
 
     let id = validator.trim(req.params.id);
 
     let options = {
-        picture: req.body.picture,
         title: req.body.title,
         intro: req.body.intro,
-        hyperlink: req.body.hyperlink,
+        book: req.body.book,
+        expand: req.body.expand,
         belong_tag: req.body.belong_tag
     }
 
@@ -102,11 +100,11 @@ exports.update_explore = (req, res, next) => {
     });
 
     // 参数不完整
-      if (not_complete || !id) {
+    if (not_complete || !id) {
         return res.send({code: 113, msg: response_code['113']});
     }
 
-    return Explore.update_explore({_id: id}, options)
+    return Skill.update_skill({_id: id}, options)
         .then((data) => {
             res.send({code: 1, msg: response_code['1'], data: data});
         })

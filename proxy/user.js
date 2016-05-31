@@ -38,3 +38,13 @@ exports.add_user = (user, callback) => {
 exports.update_user = (query, options, callback) => {
     return callback ? User.update(query, options, callback) : User.update(query, options).exec();
 }
+
+/**
+ * delete user information
+ * @param  {Object}   query    [description]
+ * @param  {Function} callback [description]
+ * @return {Promise}           [description]
+ */
+exports.delete_user = function (query, callback) {
+    return callback ? User.remove(query, callback) : User.remove(query).exec();
+};

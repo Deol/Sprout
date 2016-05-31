@@ -6,13 +6,13 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const user_schema = new Schema({
-	real_name: {type: String},
+	nick_name: {type: String},
 	passwd: {type: String},
 	avatar: {type: String},
 	sex: {type: Number},
 	phone: {type: String},
 	school: {type: String},
-	signature: {type: String}
+	purpose: {type: String}
 },{
 	toObject: {
 		virtuals: true

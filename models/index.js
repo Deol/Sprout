@@ -14,12 +14,14 @@ let connection = mongoose.connect(db, {}, function (err) {
 // require models
 require('./user.js');
 require('./note.js');
+require('./skill.js');
 require('./explore.js');
 require('./cultivation.js');
 
 module.exports = {
     User: mongoose.model('User'),
     Note: mongoose.model('Note'),
+    Skill: mongoose.model('Skill'),
     Explore: mongoose.model('Explore'),
     Cultivation: mongoose.model('Cultivation'),
 }

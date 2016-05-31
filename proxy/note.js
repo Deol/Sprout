@@ -36,3 +36,13 @@ exports.get_note = (query, fields, options, callback) => {
 exports.update_note = (query, options, callback) => {
     return callback ? Note.update(query, options, callback) : Note.update(query, options).exec();
 }
+
+/**
+ * delete note
+ * @param  {Object}   query    [description]
+ * @param  {Function} callback [description]
+ * @return {Promise}           [description]
+ */
+exports.delete_note = function (query, callback) {
+    return callback ? Note.remove(query, callback) : Note.remove(query).exec();
+};

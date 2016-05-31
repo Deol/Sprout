@@ -34,6 +34,10 @@ exports.get_note = (req, res, next) => {
 
 	return Note.get_note(query, feilds, options)
 		.then((data) => {
+			for(let i of data) {
+				i._doc.initial_time = i.initial_time;
+				i._doc.edit_time = i.edit_time;
+			}
 			res.send({code: 1, msg: response_code['1'], data: data});
 		})
 		.catch((e) => {
@@ -51,10 +55,10 @@ exports.get_note = (req, res, next) => {
 exports.add_note = (req, res, next) => {
 
 	let note_info = {
-		initial: req.body.initital,
+		initial_time: new Date(),
 		content: req.body.content,
 		user: req.body.user_id,
-		edit_time: req.body.edit_time
+		edit_time: new Date()
 	}
 
 	let not_complete = _.keys(note_info).some((item) => {
@@ -87,10 +91,9 @@ exports.update_note = (req, res, next) => {
 	let id = validator.trim(req.params.id);
 
 	let options = {
-		initial: req.body.initital,
 		content: req.body.content,
 		user: req.body.user_id,
-		edit_time: req.body.edit_time
+		edit_time: new Date()
 	}
 
 	let not_complete = _.keys(options).some((item) => {

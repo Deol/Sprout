@@ -36,3 +36,14 @@ exports.get_explore = (query, fields, options, callback) => {
 exports.update_explore = (query, options, callback) => {
     return callback ? Explore.update(query, options, callback) : Explore.update(query, options).exec();
 }
+
+
+/**
+ * delete explore
+ * @param  {Object}   query    [description]
+ * @param  {Function} callback [description]
+ * @return {Promise}           [description]
+ */
+exports.delete_explore = function (query, callback) {
+    return callback ? Explore.remove(query, callback) : Explore.remove(query).exec();
+};

@@ -36,3 +36,13 @@ exports.get_cultivation = (query, fields, options, callback) => {
 exports.update_cultivation = (query, options, callback) => {
     return callback ? Cultivation.update(query, options, callback) : Cultivation.update(query, options).exec();
 }
+
+/**
+ * delete cultivation
+ * @param  {Object}   query    [description]
+ * @param  {Function} callback [description]
+ * @return {Promise}           [description]
+ */
+exports.delete_cultivation = function (query, callback) {
+    return callback ? Cultivation.remove(query, callback) : Cultivation.remove(query).exec();
+};
