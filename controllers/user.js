@@ -89,7 +89,9 @@ exports.register = (req, res, next) => {
 
     User.add_user(new_user)
         .then((data) => {
+            console.log(data);
             let result = {
+                user_id: data._id,
                 phone: data.phone,
                 nick_name: data.nick_name
             }
@@ -103,6 +105,8 @@ exports.register = (req, res, next) => {
 exports.update_user = (req, res, next) => {
 
     let id = validator.trim(req.params.id);
+
+    console.log(req.params.id);
 
     let options = req.body;
 
